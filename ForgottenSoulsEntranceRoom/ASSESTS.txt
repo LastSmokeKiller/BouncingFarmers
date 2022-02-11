@@ -1,1 +1,12 @@
 Royalty Free Music from Bensound: www.bensound.com
+
+Some Code used from Physics example D 
+
+Hit_Hurt18 used from bxhr sound generator
+
+Splash-Bleeding-Font
+license: Freeware
+link: https://www.fontspace.com/splash-bleeding-font-f41102
+
+Original Assests from Cole Griem:
+Farmer, Player
