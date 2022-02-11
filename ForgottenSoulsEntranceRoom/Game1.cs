@@ -78,7 +78,7 @@ namespace BouncingFarmers
             }
             var playerRadius = 32;
             var playBody = world.CreateCircle(playerRadius, 1f, new Vector2(200,200), BodyType.Dynamic);
-            playBody.SetRestitution(1.0f);
+           
             player = new PlayerSprite(playerRadius, playBody);
 
             base.Initialize();

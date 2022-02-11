@@ -105,7 +105,7 @@ namespace BouncingFarmers
 
         bool CollisionHandler(Fixture fixture, Fixture other, Contact contact)
         {
-            
+            fixture.Restitution = 5.0f;
             Colliding = true;
             score += 1;
             return true;
