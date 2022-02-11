@@ -9,4 +9,4 @@ license: Freeware
 link: https://www.fontspace.com/splash-bleeding-font-f41102
 
 Original Assests from Cole Griem:
-Farmer, Player
+Farmer, Player, Splash
