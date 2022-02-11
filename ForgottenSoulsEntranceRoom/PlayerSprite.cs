@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using BouncingFarmers.Collisions;
 using tainicom.Aether.Physics2D.Dynamics;
 using tainicom.Aether.Physics2D.Dynamics.Contacts;
 
@@ -48,7 +47,7 @@ namespace BouncingFarmers
 
         public void LoadContent(ContentManager content)
         {
-            texture = content.Load<Texture2D>("Player");
+            texture = content.Load<Texture2D>("Farmer");
         }
 
         public void Update(GameTime gameTime)
@@ -100,12 +99,13 @@ namespace BouncingFarmers
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            Color color = (Colliding) ? Color.Orange : Color.White;
+            Color color = (Colliding) ? Color.Orange : Color.Blue;
             spriteBatch.Draw(texture, body.Position, null, color, body.Rotation, origin, scale, SpriteEffects.None, 0);
         }
 
         bool CollisionHandler(Fixture fixture, Fixture other, Contact contact)
         {
+            
             Colliding = true;
             score += 1;
             return true;
