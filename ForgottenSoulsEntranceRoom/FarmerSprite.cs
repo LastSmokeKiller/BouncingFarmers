@@ -62,6 +62,7 @@ namespace BouncingFarmers
 
         bool CollisionHandler(Fixture fixture, Fixture other, Contact contact)
         {
+            fixture.Restitution = 10.0f;
             Colliding = true;
             bounce.Play();
             return true;

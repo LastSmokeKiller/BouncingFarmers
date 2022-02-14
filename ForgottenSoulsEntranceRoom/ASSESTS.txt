@@ -1,4 +1,4 @@
-Royalty Free Music from Bensound: www.bensound.com
+bensound-moose.mp3 - Royalty Free Music from Bensound: www.bensound.com
 
 Some Code used from Physics example D 
 
@@ -9,4 +9,4 @@ license: Freeware
 link: https://www.fontspace.com/splash-bleeding-font-f41102
 
 Original Assests from Cole Griem:
-Farmer, Player, Splash
+Farmer.png, Player.png, Splash.png, Chicken.png, Background.png
