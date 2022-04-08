@@ -24,6 +24,8 @@ namespace BouncingFarmers
         private Song backgroundMusic;
 
         private int score;
+        private int highscore;
+        public int gameTimer;
 
         public Game1()
         {
@@ -60,7 +62,7 @@ namespace BouncingFarmers
 
             System.Random random = new System.Random();
             farmers = new List<FarmerSprite>();
-            for(int i = 0; i < 5; i++)
+            for(int i = 0; i < 10; i++)
             {
                 var radius = 25;
                 var position = new Vector2(
@@ -70,8 +72,8 @@ namespace BouncingFarmers
                 var body = world.CreateCircle(radius, 1f, position, BodyType.Dynamic);
 
                 body.LinearVelocity = new Vector2(
-                    random.Next(-50, 50),
-                    random.Next(-50, 50));
+                    random.Next(-100, 100),
+                    random.Next(-100, 100));
                 body.SetRestitution(1.0f);
                 body.AngularVelocity = (float)random.NextDouble() * MathHelper.Pi - MathHelper.PiOver2;
                 farmers.Add(new FarmerSprite(radius, body));
@@ -110,7 +112,9 @@ namespace BouncingFarmers
             foreach (var farmer in farmers) farmer.Update(gameTime);
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
             score = player.score;
-
+            highscore = player.highscore;
+            gameTimer = (int)player.Timer;
+            
             base.Update(gameTime);
         }
 
@@ -118,6 +122,8 @@ namespace BouncingFarmers
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             string Sscore = "Score = " + score.ToString();
+            string Hscore = "Highscore = " + highscore.ToString();
+            string gTimer = "Time =" + gameTimer.ToString();
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
@@ -125,6 +131,8 @@ namespace BouncingFarmers
             foreach(var farmer in farmers) farmer.Draw(gameTime, spriteBatch);
             player.Draw(gameTime, spriteBatch);
             spriteBatch.DrawString(font,Sscore ,new Vector2(20, 20), Color.White);
+            spriteBatch.DrawString(font, Hscore, new Vector2(550, 20), Color.White);
+            spriteBatch.DrawString(font, gTimer, new Vector2((Constants.GAME_WIDTH / 2) - 50 , 20), Color.White);
 
             spriteBatch.End();
 

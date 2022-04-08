@@ -38,6 +38,9 @@ namespace BouncingFarmers
 
 
         public int score = 0;
+        public int highscore = 0;
+
+        public float Timer = 60;
 
         public bool Colliding { get; protected set; }
 
@@ -53,7 +56,7 @@ namespace BouncingFarmers
             scale = radius / 32;
             origin = new Vector2(32, 32);
             this.body.OnCollision += CollisionHandler;
-
+            Timer = 60;
         }
 
         public void LoadContent(ContentManager content)
@@ -70,37 +73,43 @@ namespace BouncingFarmers
             gamePadState = GamePad.GetState(0);
             keyboardState = Keyboard.GetState();
 
+            if (highscore < score) highscore = score;
 
-
-            body.LinearVelocity += gamePadState.ThumbSticks.Left * 100 * new Vector2(1, -1);
+            body.LinearVelocity += gamePadState.ThumbSticks.Left * 200 * new Vector2(1, -1);
             body.Position += gamePadState.ThumbSticks.Left * 2 * new Vector2(1, -1);
 
             if(keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W))
             {
-                body.LinearVelocity += new Vector2(0,-100);
+                body.LinearVelocity += new Vector2(0,-200);
                 body.Position += new Vector2(0, -2);
 
             }
             if(keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S))
             {
-                body.LinearVelocity += new Vector2(0, 100);
+                body.LinearVelocity += new Vector2(0, 200);
                 body.Position += new Vector2(0, 2);
 
             }
             if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
             {
-                body.LinearVelocity += new Vector2(-100, 0);
+                body.LinearVelocity += new Vector2(-200, 0);
                 body.Position += new Vector2(-2, 0);
 
             }
             if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
             {
-                body.LinearVelocity += new Vector2(100, 0);
+                body.LinearVelocity += new Vector2(200, 0);
                 body.Position += new Vector2(2, 0);
 
             }
 
+            Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            if(Timer < 0)
+            {
+                Timer = 60;
+                score = 0;
+            }
 
         }
 
@@ -114,7 +123,16 @@ namespace BouncingFarmers
         {
             fixture.Restitution = 10.0f;
             Colliding = true;
-            if(other.Body.BodyType == BodyType.Dynamic) score += 1;
+            if (other.Body.BodyType == BodyType.Dynamic)
+            {
+                score += 1;
+            }
+            else
+            {
+                score = 0;
+                Timer = 60;
+            }
+            
             return true;
         }
     }
