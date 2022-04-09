@@ -34,7 +34,9 @@ namespace BouncingFarmers
             IsMouseVisible = true;
             graphics.PreferredBackBufferWidth = Constants.GAME_WIDTH;
             graphics.PreferredBackBufferHeight = Constants.GAME_HEIGHT;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
+            
         }
 
         protected override void Initialize()
@@ -130,9 +132,9 @@ namespace BouncingFarmers
             spriteBatch.Draw(background, Vector2.Zero, Color.White);
             foreach(var farmer in farmers) farmer.Draw(gameTime, spriteBatch);
             player.Draw(gameTime, spriteBatch);
-            spriteBatch.DrawString(font,Sscore ,new Vector2(20, 20), Color.White);
-            spriteBatch.DrawString(font, Hscore, new Vector2(550, 20), Color.White);
-            spriteBatch.DrawString(font, gTimer, new Vector2((Constants.GAME_WIDTH / 2) - 50 , 20), Color.White);
+            spriteBatch.DrawString(font,Sscore ,new Vector2(25, 20), Color.White);
+            spriteBatch.DrawString(font, Hscore, new Vector2(Constants.GAME_WIDTH - 275, 20), Color.White);
+            spriteBatch.DrawString(font, gTimer, new Vector2((Constants.GAME_WIDTH / 2) - 100 , 20), Color.White);
 
             spriteBatch.End();
 
